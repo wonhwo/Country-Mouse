@@ -1,0 +1,134 @@
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import Reveal from '@/components/Reveal';
+import CapsulePlaceholder from '@/components/placeholders/CapsulePlaceholder';
+import ScreenshotPlaceholder from '@/components/placeholders/ScreenshotPlaceholder';
+import { GAMES, getGame } from '@/data/games';
+
+export function generateStaticParams() {
+  return GAMES.map((g) => ({ id: g.id }));
+}
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const game = getGame(id);
+  if (!game) return {};
+  return {
+    title: game.title,
+    description: game.tagline,
+  };
+}
+
+export default async function GameDetailPage({ params }) {
+  const { id } = await params;
+  const game = getGame(id);
+  if (!game) notFound();
+
+  return (
+    <>
+      <header className="gd-head">
+        <div className="container">
+          <Link className="btn-back" href="/games">
+            <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+              <path
+                d="M11 5H1M5 1L1 5l4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            직접 만든 게임으로
+          </Link>
+        </div>
+        <div className="gd-capsule-wrap">
+          <Reveal>
+            <CapsulePlaceholder title={game.title} engine={game.engine} large />
+          </Reveal>
+        </div>
+      </header>
+
+      <section style={{ padding: 0 }}>
+        <div className="gd-body">
+          <Reveal>
+            <div>
+              <h1 className="gd-title">{game.title}</h1>
+              <p className="gd-tagline">{game.tagline}</p>
+              <div className="gd-desc">
+                {game.longDesc.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+              {game.links.length > 0 && (
+                <div className="gd-links">
+                  {game.links.map((l) => (
+                    <a
+                      key={l.label}
+                      href={l.url}
+                      className="btn-outline"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {l.label} ↗
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <aside className="gd-info-card">
+              <div className="gd-info-row">
+                <div className="gd-info-key">상태</div>
+                <div className="gd-info-val">
+                  <span className={`status-pill ${game.status} status-pill-inline`}>
+                    ● {game.statusLabel}
+                  </span>
+                </div>
+              </div>
+              <div className="gd-info-row">
+                <div className="gd-info-key">엔진</div>
+                <div className="gd-info-val">{game.engine}</div>
+              </div>
+              <div className="gd-info-row">
+                <div className="gd-info-key">시작</div>
+                <div className="gd-info-val">{game.started}</div>
+              </div>
+              <div className="gd-info-row">
+                <div className="gd-info-key">역할</div>
+                <div className="gd-info-val">{game.role}</div>
+              </div>
+              <div className="gd-info-row">
+                <div className="gd-info-key">스택</div>
+                <div className="gd-info-val gd-info-stack">
+                  {game.stack.map((s) => (
+                    <span key={s} className="tag">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </aside>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="gd-screens">
+        <Reveal>
+          <div className="section-label" style={{ maxWidth: 1240, margin: '0 auto 32px' }}>
+            <span className="section-label-num">—</span>
+            <span>스크린샷</span>
+          </div>
+        </Reveal>
+        <div className="gd-screens-grid">
+          {[1, 2, 3, 4].map((i) => (
+            <Reveal key={i} delay={i * 60}>
+              <ScreenshotPlaceholder index={i} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}

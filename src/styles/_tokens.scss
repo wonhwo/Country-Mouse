@@ -1,0 +1,24 @@
+// 색 / 보더 토큰 — 런타임 활용 여지를 위해 CSS 변수로 유지
+:root {
+  --bg-base: #fbf7ee;
+  --bg-card: #fffcf5;
+  --bg-surface: #f5efe2;
+  --bg-elevated: #f0e8d8;
+  --border-hairline: #e8dfcd;
+  --border-soft: #d8cfb8;
+
+  --text-primary: #2b2520;
+  --text-secondary: #6b6053;
+  --text-tertiary: #9a8e7e;
+
+  --accent-blue: #5c7da8;
+  --accent-blue-deep: #46638a;
+  --accent-blue-soft: rgba(92, 125, 168, 0.12);
+  --accent-clay: #b87053;
+  --accent-gold: #c9a552;
+
+  // 폰트 패밀리 토큰 (layout.js의 <link> 로 로드)
+  --font-sans: 'Spoqa Han Sans Neo', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
