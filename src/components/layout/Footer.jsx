@@ -42,14 +42,16 @@ export default function Footer() {
         </div>
         <div>
           <div className="footer-col-label">— reach</div>
-          <a className="footer-link" href="mailto:hello@countrymouse.studio">
-            hello@countrymouse.studio
+          <a className="footer-link" href="mailto:reppy0813@gmail.com">
+            reppy0813@gmail.com
           </a>
-          <a className="footer-link" href="#" target="_blank" rel="noreferrer">
+          <a
+            className="footer-link"
+            href="https://github.com/wonhwo"
+            target="_blank"
+            rel="noreferrer"
+          >
             GitHub ↗
-          </a>
-          <a className="footer-link" href="#" target="_blank" rel="noreferrer">
-            LinkedIn ↗
           </a>
           <a className="footer-link" href="#">
             이력서 다운로드
@@ -61,7 +63,7 @@ export default function Footer() {
           <span className="now-playing-dot" />
           <span>현재 플레이 — 몬스터 헌터 와일즈</span>
         </div>
-        <div>© 2025 Country Mouse Studio · 천천히 만듭니다</div>
+        <div>© 2026 Country Mouse Studio · 천천히 만듭니다</div>
       </div>
     </footer>
   );

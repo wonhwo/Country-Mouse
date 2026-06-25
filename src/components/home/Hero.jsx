@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <header className="hero">
       <div className="hero-content">
-        <div className="hero-eyebrow eyebrow">est. 2025 — seoul</div>
+        <div className="hero-eyebrow eyebrow">est. 2026 — seoul</div>
         <div className="hero-mascot-wrap">
           <MascotPlaceholder size="hero" label="마스코트 일러스트" dims="1 : 1 · 약 420px" />
         </div>

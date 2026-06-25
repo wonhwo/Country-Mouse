@@ -16,9 +16,9 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={80}>
             <h1 className="about-intro">
-              안녕하세요. 서울에서 게임을 만드는
+              안녕하세요. 서울에서 게임을 만드는 1인 게임 개발자
               <br />
-              <em>1인 게임 개발자</em>입니다.
+              <em>이효원 (reppy)</em>입니다.
             </h1>
           </Reveal>
         </div>
@@ -150,18 +150,12 @@ export default function AboutPage() {
                 <div className="contact-col-label">— reach</div>
                 <div className="contact-line">
                   <strong>이메일</strong>
-                  <a href="mailto:hello@countrymouse.studio">hello@countrymouse.studio</a>
+                  <a href="mailto:reppy0813@gmail.com">reppy0813@gmail.com</a>
                 </div>
                 <div className="contact-line">
                   <strong>GitHub</strong>
-                  <a href="#" target="_blank" rel="noreferrer">
-                    github.com/countrymouse
-                  </a>
-                </div>
-                <div className="contact-line">
-                  <strong>LinkedIn</strong>
-                  <a href="#" target="_blank" rel="noreferrer">
-                    linkedin.com/in/countrymouse
+                  <a href="https://github.com/wonhwo" target="_blank" rel="noreferrer">
+                    github.com/wonhwo
                   </a>
                 </div>
                 <div className="contact-line">
