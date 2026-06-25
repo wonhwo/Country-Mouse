@@ -16,7 +16,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={80}>
             <h1 className="about-intro">
-              안녕하세요. 서울에서 게임을 만드는 1인 게임 개발자
+              안녕하세요. Unreal과 C++로 게임을 만드는 개발자
               <br />
               <em>이효원 (reppy)</em>입니다.
             </h1>
@@ -32,18 +32,16 @@ export default function AboutPage() {
           <Reveal>
             <div className="about-body">
               <p>
-                처음에는 마인크래프트 모드를 만들면서 게임 개발을 시작했습니다. 학부에서는
-                컴퓨터공학을 전공했고, 지금은 <strong>HITGAME에서 Unity 개발자로 일하며</strong>{' '}
-                모바일 게임을 만들고 있습니다.
+                전투가 손에 붙는 순간을 좋아합니다. 기존 게임의 구조를 뜯어보고, 그 안의 설계 의도를
+                읽어 제 방식으로 다시 만들어보는 일에 가장 많은 시간을 씁니다.
               </p>
               <p>
-                퇴근 후엔 Unreal Engine 5로 ProjectArc라는 1인 프로젝트를 진행하고 있습니다. 게임이
-                어떻게 만들어지는지, 그 안에서 어떤 시스템이 돌아가는지가 늘 궁금합니다. 코드를 차분히
-                다듬는 시간을 좋아합니다.
+                낮에는 게임 회사에서 클라이언트 개발자로 일하고, 남는 시간에는 작은 작업실에서
+                Unreal과 C++로 제 게임을 만듭니다.
               </p>
               <p>
-                최근에는 게임 시스템 디자인과 멀티플레이 네트워킹을 깊이 익히고 있고, 새로운 팀에서
-                게임플레이 프로그래밍을 함께할 자리를 찾고 있습니다.
+                언젠가 <strong>몬스터 헌터 같은 콘솔 액션 게임</strong>을 직접 만드는 것 — 그게 지금
+                천천히 걸어가고 있는 방향입니다.
               </p>
             </div>
           </Reveal>
@@ -53,44 +51,37 @@ export default function AboutPage() {
       <section className="about-section">
         <div className="container">
           <Reveal>
-            <h2 className="about-section-title">경력</h2>
+            <h2 className="about-section-title">지나온 길</h2>
           </Reveal>
           <div className="career-list">
             <Reveal>
               <div className="career-row">
-                <div className="career-period">2023. 03 — 현재</div>
+                <div className="career-period">2026 — 현재</div>
                 <div>
-                  <h3 className="career-role">Unity Developer</h3>
-                  <p className="career-company">HITGAME · 서울</p>
-                  <p className="career-desc">
-                    모바일 게임 신작 개발과 라이브 운영에 참여하고 있습니다. 베트남·동남아 시장을
-                    대상으로 한 캐주얼 타이틀의 핵심 시스템과 인앱 구조를 다뤘습니다.
-                  </p>
+                  <h3 className="career-role">게임 클라이언트 개발자</h3>
+                  <p className="career-company">게임 회사</p>
+                  <p className="career-desc">Unity로 게임 클라이언트를 개발하고 있습니다.</p>
                 </div>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <div className="career-row">
-                <div className="career-period">2022 — 2023</div>
+                <div className="career-period">이전</div>
                 <div>
-                  <h3 className="career-role">게임 개발 인턴</h3>
-                  <p className="career-company">이전 직장 · 서울</p>
+                  <h3 className="career-role">언리얼 게임 개발 과정</h3>
+                  <p className="career-company">청년취업사관학교</p>
                   <p className="career-desc">
-                    학부 시절 게임 스타트업에서 인턴으로 일하며 Unity 워크플로우와 모바일 출시
-                    프로세스를 처음 익혔습니다.
+                    Unreal과 C++로 게임 개발을 집중적으로 익히고, 팀 프로젝트를 진행했습니다.
                   </p>
                 </div>
               </div>
             </Reveal>
             <Reveal delay={160}>
               <div className="career-row">
-                <div className="career-period">2018 — 2022</div>
+                <div className="career-period">학력</div>
                 <div>
-                  <h3 className="career-role">컴퓨터공학 학사</h3>
-                  <p className="career-company">학교명 · 서울</p>
-                  <p className="career-desc">
-                    컴퓨터공학 전공. 학부 졸업 작품으로 멀티플레이어 액션 게임을 제작했습니다.
-                  </p>
+                  <h3 className="career-role">충남도립대학교</h3>
+                  <p className="career-company">2023 졸업</p>
                 </div>
               </div>
             </Reveal>
@@ -107,31 +98,28 @@ export default function AboutPage() {
             <Reveal>
               <div className="interest-card">
                 <div className="interest-num">01</div>
-                <h3 className="interest-title">게임플레이 프로그래밍</h3>
+                <h3 className="interest-title">전투와 조작감</h3>
                 <p className="interest-desc">
-                  손에 잡히는 느낌을 만드는 게 좋습니다. 입력에 대한 반응, 프레임 단위의 타이밍,
-                  카메라가 따라가는 방식 — 플레이어가 직접 느끼는 모든 결을 다듬는 작업을 가장
-                  즐깁니다.
+                  패링, 카운터, 입력에 대한 반응 — 플레이어 손에 직접 닿는 감각을 다듬는 일을 가장
+                  좋아합니다.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <div className="interest-card">
                 <div className="interest-num">02</div>
-                <h3 className="interest-title">게임 시스템 디자인</h3>
+                <h3 className="interest-title">게임 구조 읽기</h3>
                 <p className="interest-desc">
-                  표면 아래에서 게임을 굴러가게 만드는 구조를 좋아합니다. 경제, 진행, AI 디렉터, 상태
-                  머신 — 플레이어가 직접 보지 않지만 모든 경험을 떠받치는 시스템들에 관심이 많습니다.
+                  잘 만든 게임을 뜯어보고 설계 의도를 읽어, 제 프로젝트에 맞게 다시 짜봅니다.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={160}>
               <div className="interest-card">
                 <div className="interest-num">03</div>
-                <h3 className="interest-title">멀티플레이 시스템</h3>
+                <h3 className="interest-title">끝까지 만들기</h3>
                 <p className="interest-desc">
-                  동기화와 예측, 지연 처리의 우아한 해결을 동경합니다. Unreal Replication을 본격적으로
-                  익히는 중이며, 향후 협동 보스 헌팅 멀티플레이를 직접 만들어보는 게 목표입니다.
+                  취향보다 기획 의도를 우선해, 맡은 기능을 마감 안에서 완성도까지 책임지고 구현합니다.
                 </p>
               </div>
             </Reveal>
@@ -164,7 +152,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div>
-                <div className="contact-col-label">— hiring</div>
+                <div className="contact-col-label">— say hi</div>
                 <p
                   style={{
                     fontSize: 14,
@@ -173,8 +161,8 @@ export default function AboutPage() {
                     lineHeight: 1.7,
                   }}
                 >
-                  현재 게임플레이 프로그래밍 포지션 / 시스템 프로그래밍 포지션에 관심이 있습니다.
-                  이력서가 필요하시다면 아래에서 받으실 수 있고, 가벼운 대화는 이메일로 환영합니다.
+                  게임이나 개발 이야기는 언제든 환영합니다. 가벼운 대화는 이메일로, 이력서가
+                  필요하시면 아래에서 받으실 수 있어요.
                 </p>
                 <a className="btn-primary" href="#" style={{ marginTop: 0 }}>
                   이력서 (PDF) 받기

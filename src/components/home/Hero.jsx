@@ -12,11 +12,11 @@ export default function Hero() {
         <h1 className="hero-intro">
           1인 게임 개발 스튜디오.
           <br />
-          <em>시스템을 설계하고 게임을 만듭니다.</em>
+          <em>손에 붙는 액션 게임을 만듭니다.</em>
         </h1>
         <p className="hero-desc">
-          Unity와 Unreal Engine으로 작업하며, 게임 시스템과 멀티플레이를 깊이 파고듭니다. 작은
-          작업실 안에서, 천천히, 정성껏.
+          Unreal과 C++로 전투를 만들고, 잘 만든 게임의 구조를 뜯어봅니다. 작은 작업실 안에서,
+          천천히, 정성껏.
         </p>
         <Link className="hero-status" href="/games/projectarc">
           <span className="hero-status-dot" />
