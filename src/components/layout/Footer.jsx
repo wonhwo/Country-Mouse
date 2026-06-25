@@ -22,7 +22,7 @@ export default function Footer() {
             직접 만든 게임
           </Link>
           <Link className="footer-link" href="/favorites">
-            분석한 게임
+            많이 한 게임
           </Link>
           <Link className="footer-link" href="/about">
             소개

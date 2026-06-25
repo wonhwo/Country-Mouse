@@ -2,8 +2,8 @@ import Reveal from '@/components/Reveal';
 import { FAVORITES } from '@/data/favorites';
 
 export const metadata = {
-  title: '분석한 게임',
-  description: '플레이어가 아니라 개발자로서 자주 되돌아보는 게임들. 각 게임이 제 작업에 주는 영향을 정리합니다.',
+  title: '많이 한 게임',
+  description: '분석한다기보다, 그냥 오래 붙잡고 진심으로 즐긴 게임들. 왜 좋았는지 솔직하게 적어둡니다.',
 };
 
 export default function FavoritesPage() {
@@ -12,15 +12,15 @@ export default function FavoritesPage() {
       <header className="page-head">
         <div className="container">
           <Reveal>
-            <div className="eyebrow">~/notes/games</div>
+            <div className="eyebrow">~/played</div>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="page-title">분석한 게임</h1>
+            <h1 className="page-title">많이 한 게임</h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="page-desc">
-              플레이어로서가 아니라 개발자로서 자주 되돌아보는 네 편의 게임입니다. 각각의 게임이 제
-              작업에 여전히 영향을 주고 있습니다.
+              개발자로서 분석한다기보다, 그냥 오래 붙잡고 진심으로 즐긴 게임들입니다. 왜 좋았는지,
+              가끔은 왜 피곤했는지 솔직하게 적어둡니다.
             </p>
           </Reveal>
         </div>
@@ -31,12 +31,20 @@ export default function FavoritesPage() {
             {FAVORITES.map((f, i) => (
               <Reveal key={f.num} delay={i * 60}>
                 <article className="favorite-card">
-                  <div className="favorite-head">
-                    <span className="favorite-num">{f.num}</span>
-                    <span className="favorite-head-rule" />
-                    <span>{f.studio}</span>
+                  <div className="favorite-top">
+                    <div className="favorite-icon ph" role="img" aria-label={`${f.title} 아이콘 자리`}>
+                      <span className="ph-label">아이콘</span>
+                    </div>
+                    <div className="favorite-top-text">
+                      <div className="favorite-head">
+                        <span className="favorite-num">{f.num}</span>
+                        <span className="favorite-head-rule" />
+                        <span>{f.dev}</span>
+                      </div>
+                      <h2 className="favorite-title">{f.title}</h2>
+                      <span className="favorite-playtime">플레이 {f.playtime}</span>
+                    </div>
                   </div>
-                  <h2 className="favorite-title">{f.title}</h2>
                   <p className="favorite-quote">&ldquo;{f.quote}&rdquo;</p>
                   <div className="favorite-tags">
                     {f.tags.map((t) => (

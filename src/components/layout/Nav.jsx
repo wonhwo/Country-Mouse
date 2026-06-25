@@ -8,7 +8,7 @@ import LogoPlaceholder from '@/components/placeholders/LogoPlaceholder';
 const ITEMS = [
   { href: '/', label: 'Home', match: '/' },
   { href: '/games', label: '직접 만든 게임', match: '/games' },
-  { href: '/favorites', label: '분석한 게임', match: '/favorites' },
+  { href: '/favorites', label: '많이 한 게임', match: '/favorites' },
   { href: '/tech', label: '기술', match: '/tech' },
   { href: '/notes', label: '작업 노트', match: '/notes' },
   { href: '/about', label: '소개', match: '/about' },
