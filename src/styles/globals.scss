@@ -220,6 +220,13 @@ section { padding: 140px 40px; position: relative; }
 .favorite-arrow { transition: transform 300ms ease, color 300ms ease; }
 .favorite-top { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 28px; }
 .favorite-icon { flex: 0 0 96px; width: 96px; height: 96px; border-radius: 10px; }
+.favorite-icon-img {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-hairline);
+  background: #0a0a0a;
+}
+.favorite-icon-cover { object-fit: cover; }
 .favorite-top-text { flex: 1; min-width: 0; }
 .favorite-top-text .favorite-head { margin-bottom: 16px; }
 .favorite-top-text .favorite-title { margin: 0 0 8px; }

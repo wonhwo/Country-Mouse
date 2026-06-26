@@ -1,4 +1,5 @@
 import Reveal from '@/components/Reveal';
+import FavoriteIcon from '@/components/favorites/FavoriteIcon';
 import { FAVORITES } from '@/data/favorites';
 
 export const metadata = {
@@ -32,9 +33,7 @@ export default function FavoritesPage() {
               <Reveal key={f.num} delay={i * 60}>
                 <article className="favorite-card">
                   <div className="favorite-top">
-                    <div className="favorite-icon ph" role="img" aria-label={`${f.title} 아이콘 자리`}>
-                      <span className="ph-label">아이콘</span>
-                    </div>
+                    <FavoriteIcon title={f.title} src={f.icon} />
                     <div className="favorite-top-text">
                       <div className="favorite-head">
                         <span className="favorite-num">{f.num}</span>
