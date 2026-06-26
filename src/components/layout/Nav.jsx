@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import LogoPlaceholder from '@/components/placeholders/LogoPlaceholder';
+import SiteLogo from '@/components/layout/SiteLogo';
 
 const ITEMS = [
   { href: '/', label: 'Home', match: '/' },
@@ -47,8 +47,8 @@ export default function Nav() {
   return (
     <>
       <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
-        <Link href="/" aria-label="홈으로">
-          <LogoPlaceholder />
+        <Link href="/" aria-label="Country Mouse Studio 홈">
+          <SiteLogo />
         </Link>
         <div className="nav-links">
           {ITEMS.map((it) => (

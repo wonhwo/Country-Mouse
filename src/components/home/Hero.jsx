@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import MascotPlaceholder from '@/components/placeholders/MascotPlaceholder';
+import SiteMascot from '@/components/layout/SiteMascot';
 
 export default function Hero() {
   return (
@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-eyebrow eyebrow">est. 2026 — seoul</div>
         <div className="hero-mascot-wrap">
-          <MascotPlaceholder size="hero" label="마스코트 일러스트" dims="1 : 1 · 약 420px" />
+          <SiteMascot size="hero" priority />
         </div>
         <h1 className="hero-intro">
           1인 게임 개발 스튜디오.

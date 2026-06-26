@@ -28,11 +28,37 @@
 .ph-dims { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); opacity: 0.7; z-index: 1; }
 .ph-icon { width: 24px; height: 24px; opacity: 0.4; z-index: 1; }
 .ph-logo-nav { width: 168px; height: 36px; cursor: pointer; }
+.site-logo { display: inline-flex; align-items: center; gap: 10px; line-height: 1; }
+.site-logo-mascot { width: auto; height: 42px; flex-shrink: 0; }
+.site-logo-wordmark { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.site-logo-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.site-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  color: var(--accent-blue);
+}
+@media (max-width: 480px) {
+  .site-logo-title { font-size: 15px; }
+  .site-logo-mascot { height: 34px; }
+  .site-logo { gap: 8px; }
+}
 .ph-logo-nav .ph-label { font-size: 10px; }
 .ph-mascot-hero { width: 100%; max-width: 420px; aspect-ratio: 1 / 1; margin: 0 auto; }
 .ph-mascot-hero .ph-label { font-size: 12px; }
 .ph-mascot-sm { width: 64px; height: 64px; }
 .ph-mascot-sm .ph-label { font-size: 9px; }
+.site-mascot { display: block; width: auto; height: auto; }
+.site-mascot--hero { width: min(100%, 420px); max-height: 420px; object-fit: contain; }
+.site-mascot--sm { width: 64px; height: 64px; object-fit: contain; }
 .ph-capsule { width: 100%; aspect-ratio: 460 / 215; }
 .ph-capsule-lg { width: 100%; aspect-ratio: 16 / 7; }
 .game-capsule {
@@ -100,7 +126,7 @@ section { padding: 140px 40px; position: relative; }
 .hero-mascot-wrap { margin: 40px 0 56px; width: 100%; display: flex; justify-content: center; }
 @media (max-width: 768px) {
   .hero-mascot-wrap { margin: 32px 0 40px; }
-  .ph-mascot-hero { max-width: 280px; }
+  .site-mascot--hero { width: min(100%, 280px); max-height: 280px; }
 }
 .hero-intro { font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 56px); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin: 0; max-width: 720px; }
 .hero-intro em { font-style: italic; color: var(--accent-blue-deep); }

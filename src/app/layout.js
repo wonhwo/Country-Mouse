@@ -17,6 +17,7 @@ export const metadata = {
       '서울의 1인 게임 개발 스튜디오. 게임 시스템을 설계하고 게임을 만듭니다.',
     type: 'website',
     locale: 'ko_KR',
+    images: [{ url: '/assets/og-mascot.png', width: 180, height: 180, alt: 'Country Mouse Studio 마스코트' }],
   },
 };
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import MascotPlaceholder from '@/components/placeholders/MascotPlaceholder';
+import SiteMascot from '@/components/layout/SiteMascot';
 
 export default function Footer() {
   return (
@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-grid">
         <div>
           <div className="footer-mascot">
-            <MascotPlaceholder size="sm" label="마스코트" dims="작게" />
+            <SiteMascot size="sm" />
           </div>
           <p className="footer-tag">
             서울의 작은 작업실에서, 천천히 게임을 만들어가는 1인 스튜디오입니다.
