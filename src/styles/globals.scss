@@ -271,14 +271,26 @@ section { padding: 140px 40px; position: relative; }
 .contact-line a:hover, .contact-line button:hover { text-decoration: underline; }
 
 /* ============ TECH PAGE ============ */
-.tech-engines { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-@media (max-width: 768px) { .tech-engines { grid-template-columns: 1fr; } }
+.tech-engines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 968px) { .tech-engines { grid-template-columns: 1fr; } }
 .tech-engine-card { background: var(--bg-card); border: 1px solid var(--border-hairline); padding: 40px; border-radius: 4px; }
-.tech-engine-name { font-family: var(--font-display); font-size: 32px; font-weight: 500; margin: 0 0 8px; letter-spacing: -0.015em; }
+.tech-engine-name { font-family: var(--font-display); font-size: clamp(26px, 2.5vw, 32px); font-weight: 500; margin: 0 0 8px; letter-spacing: -0.015em; }
 .tech-engine-level { font-family: var(--font-mono); font-size: 11px; color: var(--accent-blue); letter-spacing: 0.1em; margin-bottom: 24px; }
 .tech-engine-desc { font-size: 14px; line-height: 1.8; color: var(--text-secondary); margin: 0 0 20px; }
 .tech-engine-list { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); display: flex; gap: 8px; flex-wrap: wrap; }
 .tech-engine-list span:not(:last-child)::after { content: '·'; margin-left: 8px; }
+.tech-system-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .tech-system-grid { grid-template-columns: 1fr; } }
+.tech-system-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  padding: 28px 32px;
+  height: 100%;
+}
+.tech-system-title { font-family: var(--font-display); font-size: 22px; font-weight: 500; margin: 0 0 12px; letter-spacing: -0.01em; }
+.tech-system-desc { font-size: 14px; line-height: 1.75; color: var(--text-secondary); margin: 0 0 16px; }
+.tech-system-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tech-list-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 @media (max-width: 768px) { .tech-list-grid { grid-template-columns: 1fr 1fr; } }
 .tech-list-block h4 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em; color: var(--accent-blue); margin: 0 0 14px; text-transform: lowercase; font-weight: 500; }
