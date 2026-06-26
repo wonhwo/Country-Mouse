@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import Reveal from '@/components/Reveal';
 import GameCapsule from '@/components/games/GameCapsule';
 import GameScreenshot from '@/components/games/GameScreenshot';
+import GameVideo from '@/components/games/GameVideo';
+import { getYoutubeEmbedUrl } from '@/lib/youtube';
 import { GAMES, getGame } from '@/data/games';
 
 export function generateStaticParams() {
@@ -23,6 +25,7 @@ export default async function GameDetailPage({ params }) {
   const { id } = await params;
   const game = getGame(id);
   if (!game) notFound();
+  const hasVideo = Boolean(getYoutubeEmbedUrl(game.videoUrl));
 
   return (
     <>
@@ -72,8 +75,18 @@ export default async function GameDetailPage({ params }) {
                   ))}
                 </ul>
               )}
-              {game.links.length > 0 && (
+              {(game.links.length > 0 || hasVideo) && (
                 <div className="gd-links">
+                  {hasVideo && (
+                    <a
+                      href={game.videoUrl}
+                      className="btn-outline"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      시연 영상 (YouTube) ↗
+                    </a>
+                  )}
                   {game.links.map((l) => (
                     <a
                       key={l.label}
@@ -132,6 +145,20 @@ export default async function GameDetailPage({ params }) {
           </Reveal>
         </div>
       </section>
+
+      {hasVideo && (
+        <section className="gd-video-section">
+          <Reveal>
+            <div className="section-label" style={{ maxWidth: 1240, margin: '0 auto 32px' }}>
+              <span className="section-label-num">—</span>
+              <span>시연 영상</span>
+            </div>
+          </Reveal>
+          <Reveal delay={60}>
+            <GameVideo url={game.videoUrl} title={game.title} />
+          </Reveal>
+        </section>
+      )}
 
       <section className="gd-screens">
         <Reveal>

@@ -69,7 +69,7 @@
   border: 1px solid var(--border-hairline);
   background: var(--bg-elevated);
 }
-.game-screenshot-img { object-fit: cover; }
+.game-screenshot-img { object-fit: contain; background: #0a0a0a; }
 .ph-screenshot { width: 100%; aspect-ratio: 16 / 9; }
 .ph-portrait { width: 100%; max-width: 280px; aspect-ratio: 4 / 5; margin: 0 auto; }
 
@@ -125,6 +125,18 @@ section { padding: 140px 40px; position: relative; }
 .status-pill.proto { color: var(--accent-gold); }
 .status-pill.tools { color: var(--text-secondary); }
 .status-pill-inline { margin-top: 0; }
+.game-video-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-base);
+  border-radius: 2px;
+  color: var(--text-secondary);
+}
 
 .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; padding: 13px 24px; margin-top: 32px; background: var(--accent-blue); color: var(--bg-card); border: none; border-radius: 2px; cursor: pointer; transition: background 200ms ease, transform 200ms ease; text-decoration: none; }
 .btn-primary:hover { background: var(--accent-blue-deep); transform: translateY(-1px); }
@@ -315,6 +327,28 @@ section { padding: 140px 40px; position: relative; }
 .gd-info-val { font-size: 14px; color: var(--text-primary); }
 .gd-info-stack { display: flex; gap: 8px; flex-wrap: wrap; }
 .gd-info-stack .tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); padding: 4px 8px; background: var(--bg-base); border: 1px solid var(--border-hairline); border-radius: 2px; }
+.gd-video-section {
+  padding: 48px 40px 0;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) { .gd-video-section { padding: 36px 20px 0; } }
+.gd-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-hairline);
+  background: #0a0a0a;
+}
+.gd-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 .gd-screens { padding: 40px 40px 120px; max-width: 1240px; margin: 0 auto; }
 @media (max-width: 768px) { .gd-screens { padding: 30px 20px 80px; } }
 .gd-screens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }

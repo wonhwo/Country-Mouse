@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import GameCapsule from '@/components/games/GameCapsule';
 import { GAMES } from '@/data/games';
+import { getYoutubeEmbedUrl } from '@/lib/youtube';
 
 const FILTERS = [
   { id: 'all', label: '전체' },
@@ -54,6 +55,9 @@ export default function GamesExplorer() {
                   </div>
                   <div className="game-row">
                     <span className={`status-pill ${g.status}`}>● {g.statusLabel}</span>
+                    {getYoutubeEmbedUrl(g.videoUrl) && (
+                      <span className="game-video-pill">▶ 시연 영상</span>
+                    )}
                   </div>
                   {g.award && (
                     <p className="game-award">{g.award}</p>
