@@ -35,6 +35,41 @@
 .ph-mascot-sm .ph-label { font-size: 9px; }
 .ph-capsule { width: 100%; aspect-ratio: 460 / 215; }
 .ph-capsule-lg { width: 100%; aspect-ratio: 16 / 7; }
+.game-capsule {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 460 / 215;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-elevated);
+}
+.game-capsule-lg { aspect-ratio: 16 / 7; }
+.game-capsule-img { object-fit: cover; }
+.game-capsule-engine {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  background: rgba(250, 248, 243, 0.92);
+  border: 1px solid var(--border-hairline);
+  border-radius: 2px;
+  color: var(--text-primary);
+  z-index: 2;
+}
+.game-screenshot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-elevated);
+}
+.game-screenshot-img { object-fit: cover; }
 .ph-screenshot { width: 100%; aspect-ratio: 16 / 9; }
 .ph-portrait { width: 100%; max-width: 280px; aspect-ratio: 4 / 5; margin: 0 auto; }
 
@@ -142,8 +177,10 @@ section { padding: 140px 40px; position: relative; }
 .games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 36px; }
 @media (max-width: 768px) { .games-grid { grid-template-columns: 1fr; gap: 36px; } }
 .game-card { cursor: pointer; display: block; text-decoration: none; color: inherit; }
-.game-card .ph-capsule { transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 320ms ease; }
-.game-card:hover .ph-capsule { transform: translateY(-4px); border-color: var(--accent-blue); }
+.game-card .ph-capsule,
+.game-card .game-capsule { transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 320ms ease; }
+.game-card:hover .ph-capsule,
+.game-card:hover .game-capsule { transform: translateY(-4px); border-color: var(--accent-blue); }
 .game-meta { margin-top: 18px; }
 .game-title { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: 1.1; letter-spacing: -0.015em; color: var(--text-primary); margin: 0; }
 .game-row { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }

@@ -22,6 +22,8 @@ export const GAMES = [
     started: '2025',
     role: '게임 클라이언트 · 전투·UI 프로그래밍',
     links: [],
+    thumbnail: "/assets/games/project-aurora/thumbnail.jpg",
+    screenshots: ["/assets/games/project-aurora/screen-01.jpg", "/assets/games/project-aurora/screen-02.jpg", "/assets/games/project-aurora/screen-03.jpg", "/assets/games/project-aurora/screen-04.jpg"],
   },
   {
     id: 'operation-ddt',
@@ -46,6 +48,8 @@ export const GAMES = [
     started: '2025. 07',
     role: '보스 AI · 시스템 · 에디터 플러그인',
     links: [],
+    thumbnail: null,
+    screenshots: [],
   },
   {
     id: 'tetoru-wa-airu',
@@ -69,6 +73,8 @@ export const GAMES = [
     started: '2025',
     role: '게임플레이 · 네트워킹 프로그래밍',
     links: [],
+    thumbnail: "/assets/games/tetoru-wa-airu/thumbnail.jpg",
+    screenshots: ["/assets/games/tetoru-wa-airu/screen-01.jpg", "/assets/games/tetoru-wa-airu/screen-02.jpg"],
   },
   {
     id: 'soultown',
@@ -93,6 +99,8 @@ export const GAMES = [
     started: '2023',
     role: '1인 개발 (기획 · 프로그래밍)',
     links: [],
+    thumbnail: "/assets/games/soultown/thumbnail.jpg",
+    screenshots: ["/assets/games/soultown/screen-01.jpg", "/assets/games/soultown/screen-02.jpg", "/assets/games/soultown/screen-03.jpg"],
   },
   {
     id: 'geek-lol',
@@ -116,6 +124,8 @@ export const GAMES = [
     started: '2024. 01',
     role: '프론트엔드',
     links: [],
+    thumbnail: "/assets/games/geek-lol/thumbnail.jpg",
+    screenshots: ["/assets/games/geek-lol/screen-01.jpg"],
   },
   {
     id: 'sususu-supernova',
@@ -139,6 +149,8 @@ export const GAMES = [
     started: '2025',
     role: 'AI · 시스템 · UI 프로그래밍',
     links: [],
+    thumbnail: "/assets/games/sususu-supernova/thumbnail.jpg",
+    screenshots: ["/assets/games/sususu-supernova/screen-01.jpg", "/assets/games/sususu-supernova/screen-02.jpg"],
   },
   {
     id: 'sacred-sprout-empire',
@@ -162,6 +174,8 @@ export const GAMES = [
     started: '2025',
     role: '게임플레이 프로그래밍',
     links: [],
+    thumbnail: "/assets/games/sacred-sprout-empire/thumbnail.jpg",
+    screenshots: ["/assets/games/sacred-sprout-empire/screen-01.jpg", "/assets/games/sacred-sprout-empire/screen-02.jpg", "/assets/games/sacred-sprout-empire/screen-03.jpg"],
   },
   {
     id: 'seark',
@@ -185,6 +199,8 @@ export const GAMES = [
     started: '2025',
     role: 'Blueprint · UI',
     links: [],
+    thumbnail: "/assets/games/seark/thumbnail.jpg",
+    screenshots: ["/assets/games/seark/screen-01.jpg", "/assets/games/seark/screen-02.jpg"],
   },
   {
     id: 'projectarc',
@@ -207,6 +223,8 @@ export const GAMES = [
     started: '2026',
     role: '1인 개발 (기획 · 프로그래밍)',
     links: [],
+    thumbnail: "/assets/games/projectarc/thumbnail.jpg",
+    screenshots: ["/assets/games/projectarc/screen-01.jpg", "/assets/games/projectarc/screen-02.jpg", "/assets/games/projectarc/screen-03.jpg"],
   },
 ];
 

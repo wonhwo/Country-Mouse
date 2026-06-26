@@ -1,0 +1,62 @@
+{
+  "project-aurora": {
+    "thumbnail": "/assets/games/project-aurora/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/project-aurora/screen-01.jpg",
+      "/assets/games/project-aurora/screen-02.jpg",
+      "/assets/games/project-aurora/screen-03.jpg",
+      "/assets/games/project-aurora/screen-04.jpg"
+    ]
+  },
+  "tetoru-wa-airu": {
+    "thumbnail": "/assets/games/tetoru-wa-airu/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/tetoru-wa-airu/screen-01.jpg",
+      "/assets/games/tetoru-wa-airu/screen-02.jpg"
+    ]
+  },
+  "soultown": {
+    "thumbnail": "/assets/games/soultown/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/soultown/screen-01.jpg",
+      "/assets/games/soultown/screen-02.jpg",
+      "/assets/games/soultown/screen-03.jpg"
+    ]
+  },
+  "geek-lol": {
+    "thumbnail": "/assets/games/geek-lol/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/geek-lol/screen-01.jpg"
+    ]
+  },
+  "sususu-supernova": {
+    "thumbnail": "/assets/games/sususu-supernova/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/sususu-supernova/screen-01.jpg",
+      "/assets/games/sususu-supernova/screen-02.jpg"
+    ]
+  },
+  "sacred-sprout-empire": {
+    "thumbnail": "/assets/games/sacred-sprout-empire/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/sacred-sprout-empire/screen-01.jpg",
+      "/assets/games/sacred-sprout-empire/screen-02.jpg",
+      "/assets/games/sacred-sprout-empire/screen-03.jpg"
+    ]
+  },
+  "seark": {
+    "thumbnail": "/assets/games/seark/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/seark/screen-01.jpg",
+      "/assets/games/seark/screen-02.jpg"
+    ]
+  },
+  "projectarc": {
+    "thumbnail": "/assets/games/projectarc/thumbnail.jpg",
+    "screenshots": [
+      "/assets/games/projectarc/screen-01.jpg",
+      "/assets/games/projectarc/screen-02.jpg",
+      "/assets/games/projectarc/screen-03.jpg"
+    ]
+  }
+}

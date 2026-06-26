@@ -3,7 +3,7 @@
 import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-import CapsulePlaceholder from '@/components/placeholders/CapsulePlaceholder';
+import GameCapsule from '@/components/games/GameCapsule';
 import { GAMES } from '@/data/games';
 
 const FILTERS = [
@@ -47,7 +47,7 @@ export default function GamesExplorer() {
           {filtered.map((g, i) => (
             <Reveal key={g.id} delay={(i % 2) * 80}>
               <Link className="game-card" href={`/games/${g.id}`}>
-                <CapsulePlaceholder title={g.title} engine={g.engine} />
+                <GameCapsule title={g.title} engine={g.engine} src={g.thumbnail} />
                 <div className="game-meta">
                   <div className="game-row">
                     <h3 className="game-title">{g.title}</h3>

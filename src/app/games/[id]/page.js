@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Reveal from '@/components/Reveal';
-import CapsulePlaceholder from '@/components/placeholders/CapsulePlaceholder';
-import ScreenshotPlaceholder from '@/components/placeholders/ScreenshotPlaceholder';
+import GameCapsule from '@/components/games/GameCapsule';
+import GameScreenshot from '@/components/games/GameScreenshot';
 import { GAMES, getGame } from '@/data/games';
 
 export function generateStaticParams() {
@@ -43,7 +43,13 @@ export default async function GameDetailPage({ params }) {
         </div>
         <div className="gd-capsule-wrap">
           <Reveal>
-            <CapsulePlaceholder title={game.title} engine={game.engine} large />
+            <GameCapsule
+              title={game.title}
+              engine={game.engine}
+              src={game.thumbnail}
+              large
+              priority
+            />
           </Reveal>
         </div>
       </header>
@@ -135,11 +141,17 @@ export default async function GameDetailPage({ params }) {
           </div>
         </Reveal>
         <div className="gd-screens-grid">
-          {[1, 2, 3, 4].map((i) => (
-            <Reveal key={i} delay={i * 60}>
-              <ScreenshotPlaceholder index={i} />
-            </Reveal>
-          ))}
+          {game.screenshots?.length
+            ? game.screenshots.map((src, i) => (
+                <Reveal key={src} delay={i * 60}>
+                  <GameScreenshot src={src} title={game.title} index={i + 1} />
+                </Reveal>
+              ))
+            : [1, 2, 3, 4].map((i) => (
+                <Reveal key={i} delay={i * 60}>
+                  <GameScreenshot src={null} title={game.title} index={i} />
+                </Reveal>
+              ))}
         </div>
       </section>
     </>

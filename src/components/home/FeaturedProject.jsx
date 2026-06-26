@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-import CapsulePlaceholder from '@/components/placeholders/CapsulePlaceholder';
+import GameCapsule from '@/components/games/GameCapsule';
+import { getGame } from '@/data/games';
 
 export default function FeaturedProject() {
+  const project = getGame('projectarc');
+
   return (
     <section>
       <div className="container">
@@ -15,7 +18,11 @@ export default function FeaturedProject() {
         <div className="featured">
           <Reveal>
             <Link href="/games/projectarc" style={{ display: 'block' }}>
-              <CapsulePlaceholder title="ProjectArc" engine="UE5" />
+              <GameCapsule
+                title="ProjectArc"
+                engine="UE5"
+                src={project?.thumbnail}
+              />
             </Link>
           </Reveal>
           <Reveal delay={100}>
