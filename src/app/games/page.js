@@ -19,8 +19,8 @@ export default function GamesPage() {
           </Reveal>
           <Reveal delay={160}>
             <p className="page-desc">
-              개인 작업물을 작업한 순서대로 모아두었습니다. 이미 출시한 것도 있고, 아직 만들고 있는
-              것도 있습니다.
+              팀 프로젝트와 개인 작업을 우선순위 순으로 모아두었습니다. 완료된 작업과 현재 개발
+              중인 ProjectArc를 함께 소개합니다.
             </p>
           </Reveal>
         </div>

@@ -148,6 +148,7 @@ section { padding: 140px 40px; position: relative; }
 .game-title { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: 1.1; letter-spacing: -0.015em; color: var(--text-primary); margin: 0; }
 .game-row { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
 .game-tagline { color: var(--text-secondary); font-size: 14px; margin-top: 12px; line-height: 1.7; max-width: 460px; }
+.game-award { font-family: var(--font-mono); font-size: 11px; color: var(--accent-blue); margin-top: 10px; line-height: 1.6; max-width: 460px; }
 .game-stack { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; opacity: 0.65; transition: opacity 200ms ease; }
 .game-card:hover .game-stack { opacity: 1; }
 .stack-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--text-tertiary); }
@@ -267,6 +268,8 @@ section { padding: 140px 40px; position: relative; }
 .gd-title { font-family: var(--font-display); font-size: clamp(44px, 5.5vw, 72px); font-weight: 400; line-height: 1; letter-spacing: -0.025em; margin: 0 0 12px; }
 .gd-tagline { font-family: var(--font-display); font-size: clamp(20px, 2vw, 26px); font-weight: 300; font-style: italic; line-height: 1.5; color: var(--text-secondary); margin: 0 0 32px; max-width: 560px; }
 .gd-desc p { font-size: 16px; line-height: 1.85; color: var(--text-secondary); margin: 0 0 1.4em; max-width: 580px; }
+.gd-highlights { margin: 0 0 1.4em; padding: 0 0 0 1.2em; max-width: 580px; color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+.gd-highlights li { margin-bottom: 0.5em; }
 .gd-info-card { background: var(--bg-card); border: 1px solid var(--border-hairline); padding: 32px; border-radius: 4px; }
 .gd-info-row { padding: 14px 0; border-bottom: 1px solid var(--border-hairline); }
 .gd-info-row:first-child { padding-top: 0; }

@@ -23,7 +23,7 @@ export default function Workshop() {
               <div className="now-card-label">— now</div>
               <div className="now-row">
                 <span className="now-row-key">작업 중</span>
-                <span className="now-row-val">개인 액션 프로젝트</span>
+                <span className="now-row-val">ProjectArc</span>
               </div>
               <div className="now-row">
                 <span className="now-row-key">학습 중</span>

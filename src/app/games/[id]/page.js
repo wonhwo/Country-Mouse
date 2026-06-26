@@ -59,6 +59,13 @@ export default async function GameDetailPage({ params }) {
                   <p key={i}>{p}</p>
                 ))}
               </div>
+              {game.highlights?.length > 0 && (
+                <ul className="gd-highlights">
+                  {game.highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              )}
               {game.links.length > 0 && (
                 <div className="gd-links">
                   {game.links.map((l) => (
@@ -87,6 +94,12 @@ export default async function GameDetailPage({ params }) {
                   </span>
                 </div>
               </div>
+              {game.award && (
+                <div className="gd-info-row">
+                  <div className="gd-info-key">수상 · 성과</div>
+                  <div className="gd-info-val">{game.award}</div>
+                </div>
+              )}
               <div className="gd-info-row">
                 <div className="gd-info-key">엔진</div>
                 <div className="gd-info-val">{game.engine}</div>

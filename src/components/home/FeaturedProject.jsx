@@ -22,8 +22,8 @@ export default function FeaturedProject() {
             <div>
               <h2 className="featured-title">ProjectArc</h2>
               <p className="featured-desc">
-                죽어가는 세계의 검사를 다루는 2D 픽셀 아트 액션 플랫포머입니다. 커스텀 이동 시스템,
-                프레임 단위의 패링, 그리고 StateTree 기반 AI를 중심으로 설계되었습니다.
+                손에 붙는 전투와 패링이 핵심인 개인 UE5 액션 프로젝트입니다. C++ 중심으로 입력
+                응답성과 전투 타이밍을 다듬고 있습니다.
               </p>
               <div>
                 <span className="status-pill dev">● 개발 중</span>

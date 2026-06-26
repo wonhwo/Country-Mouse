@@ -10,7 +10,7 @@ const FILTERS = [
   { id: 'all', label: '전체' },
   { id: 'unreal', label: 'Unreal' },
   { id: 'unity', label: 'Unity' },
-  { id: 'tools', label: '도구' },
+  { id: 'web', label: 'Web' },
 ];
 
 export default function GamesExplorer() {
@@ -21,7 +21,7 @@ export default function GamesExplorer() {
     all: GAMES.length,
     unreal: GAMES.filter((g) => g.engineKey === 'unreal').length,
     unity: GAMES.filter((g) => g.engineKey === 'unity').length,
-    tools: GAMES.filter((g) => g.engineKey === 'tools').length,
+    web: GAMES.filter((g) => g.engineKey === 'web').length,
   };
 
   return (
@@ -55,6 +55,9 @@ export default function GamesExplorer() {
                   <div className="game-row">
                     <span className={`status-pill ${g.status}`}>● {g.statusLabel}</span>
                   </div>
+                  {g.award && (
+                    <p className="game-award">{g.award}</p>
+                  )}
                   <p className="game-tagline">{g.tagline}</p>
                   <div className="game-stack">
                     {g.stack.map((s) => (
