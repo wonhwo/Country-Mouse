@@ -16,13 +16,13 @@ export default function Footer() {
         <div>
           <div className="footer-col-label">— studio</div>
           <Link className="footer-link" href="/">
-            Home
+            홈
           </Link>
           <Link className="footer-link" href="/games">
-            직접 만든 게임
+            게임
           </Link>
           <Link className="footer-link" href="/favorites">
-            많이 한 게임
+            플레이 로그
           </Link>
           <Link className="footer-link" href="/about">
             소개
@@ -31,7 +31,7 @@ export default function Footer() {
         <div>
           <div className="footer-col-label">— notes</div>
           <Link className="footer-link" href="/notes">
-            작업 노트
+            노트
           </Link>
           <Link className="footer-link" href="/tech">
             기술

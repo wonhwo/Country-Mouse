@@ -3,7 +3,7 @@ import FavoriteIcon from '@/components/favorites/FavoriteIcon';
 import { FAVORITES } from '@/data/favorites';
 
 export const metadata = {
-  title: '많이 한 게임',
+  title: '플레이 로그',
   description: '분석한다기보다, 그냥 오래 붙잡고 진심으로 즐긴 게임들. 왜 좋았는지 솔직하게 적어둡니다.',
 };
 
@@ -16,7 +16,7 @@ export default function FavoritesPage() {
             <div className="eyebrow">~/played</div>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="page-title">많이 한 게임</h1>
+            <h1 className="page-title">플레이 로그</h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="page-desc">

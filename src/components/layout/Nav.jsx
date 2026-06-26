@@ -6,11 +6,11 @@ import { usePathname } from 'next/navigation';
 import SiteLogo from '@/components/layout/SiteLogo';
 
 const ITEMS = [
-  { href: '/', label: 'Home', match: '/' },
-  { href: '/games', label: '직접 만든 게임', match: '/games' },
-  { href: '/favorites', label: '많이 한 게임', match: '/favorites' },
+  { href: '/', label: '홈', match: '/' },
+  { href: '/games', label: '게임', match: '/games' },
+  { href: '/favorites', label: '플레이 로그', match: '/favorites' },
   { href: '/tech', label: '기술', match: '/tech' },
-  { href: '/notes', label: '작업 노트', match: '/notes' },
+  { href: '/notes', label: '노트', match: '/notes' },
   { href: '/about', label: '소개', match: '/about' },
 ];
 

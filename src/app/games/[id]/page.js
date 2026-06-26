@@ -41,7 +41,7 @@ export default async function GameDetailPage({ params }) {
                 strokeLinejoin="round"
               />
             </svg>
-            직접 만든 게임으로
+            게임으로
           </Link>
         </div>
         <div className="gd-capsule-wrap">
