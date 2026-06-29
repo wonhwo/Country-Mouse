@@ -20,12 +20,18 @@ export default function AdminNotesClient() {
   const runDiagnosis = async () => {
     if (!user?.uid) {
       setDiagnosis(null);
+      setChecking(false);
       return;
     }
     setChecking(true);
     try {
       const result = await diagnoseFirestoreAccess(user.uid);
       setDiagnosis(result);
+    } catch (err) {
+      setDiagnosis({
+        steps: [{ name: '진단', ok: false, detail: err.message || '실패' }],
+        ready: false,
+      });
     } finally {
       setChecking(false);
     }
@@ -88,7 +94,7 @@ export default function AdminNotesClient() {
           type="button"
           className="btn-outline"
           onClick={onImport}
-          disabled={importing || checking || diagnosis?.ready === false}
+          disabled={importing || checking}
         >
           {importing ? '가져오는 중…' : '기존 노트 가져오기'}
         </button>
@@ -106,10 +112,12 @@ export default function AdminNotesClient() {
           <p className="account-card-desc">
             전체 상태:{' '}
             {checking
-              ? '확인 중…'
+              ? '확인 중… (최대 10초)'
               : firestoreReady
                 ? '정상 — 가져오기 가능'
-                : '문제 있음 — 아래 항목 확인'}
+                : diagnosis
+                  ? '문제 있음 — 아래 항목 확인'
+                  : '대기 중'}
           </p>
 
           {diagnosis?.steps?.length > 0 && (

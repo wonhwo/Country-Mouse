@@ -45,12 +45,21 @@ export function AuthProvider({ children }) {
       return undefined;
     }
 
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      setLoading(false);
+    };
+
+    const timeoutId = setTimeout(finish, 8000);
+
     const unsub = onAuthStateChanged(auth, (nextUser) => {
       setUser(nextUser);
       if (!nextUser) {
         setGithubLogin(null);
         writeStoredAdminUid(null);
-        setLoading(false);
+        finish();
         return;
       }
 
@@ -61,10 +70,13 @@ export function AuthProvider({ children }) {
         setGithubLogin(null);
         writeStoredAdminUid(null);
       }
-      setLoading(false);
+      finish();
     });
 
-    return unsub;
+    return () => {
+      clearTimeout(timeoutId);
+      unsub();
+    };
   }, [adminGithubLogin]);
 
   const isAdmin = Boolean(

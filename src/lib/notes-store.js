@@ -11,6 +11,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { NOTES } from '@/data/notes';
+import { withTimeout } from '@/lib/async-utils';
 import { getFirebaseAuth, getFirebaseDb, getFirebaseProjectId } from '@/lib/firebase';
 import {
   estimateReadMinutes,
@@ -25,6 +26,8 @@ import {
 const PROBE_READ_SLUG = 'cms-probe-read-missing';
 const PROBE_WRITE_SLUG = 'cms-probe-write-test';
 
+const FIRESTORE_TIMEOUT_MS = 10000;
+
 async function ensureAuthSession() {
   const auth = getFirebaseAuth();
   if (!auth?.currentUser) {
@@ -32,7 +35,7 @@ async function ensureAuthSession() {
       code: 'auth/missing',
     });
   }
-  await auth.currentUser.getIdToken(true);
+  await withTimeout(auth.currentUser.getIdToken(), FIRESTORE_TIMEOUT_MS, '인증 토큰');
   return auth.currentUser;
 }
 
@@ -57,7 +60,7 @@ export async function diagnoseFirestoreAccess(uid) {
   }
 
   try {
-    await auth.currentUser.getIdToken(true);
+    await withTimeout(auth.currentUser.getIdToken(), FIRESTORE_TIMEOUT_MS, '인증 토큰');
     add('인증 토큰', true, '발급됨');
   } catch (err) {
     add('인증 토큰', false, err.message || '실패');
@@ -65,7 +68,11 @@ export async function diagnoseFirestoreAccess(uid) {
   }
 
   try {
-    const adminSnap = await getDoc(doc(db, 'admins', authUid));
+    const adminSnap = await withTimeout(
+      getDoc(doc(db, 'admins', authUid)),
+      FIRESTORE_TIMEOUT_MS,
+      'admins 조회',
+    );
     add(
       'admins 문서',
       adminSnap.exists(),
@@ -76,7 +83,11 @@ export async function diagnoseFirestoreAccess(uid) {
   }
 
   try {
-    await getDoc(doc(db, 'notes', PROBE_READ_SLUG));
+    await withTimeout(
+      getDoc(doc(db, 'notes', PROBE_READ_SLUG)),
+      FIRESTORE_TIMEOUT_MS,
+      'notes 읽기',
+    );
     add('notes 읽기 테스트', true, '통과 (없는 문서)');
   } catch (err) {
     add('notes 읽기 테스트', false, err.code || err.message);
@@ -84,19 +95,27 @@ export async function diagnoseFirestoreAccess(uid) {
 
   const probeRef = doc(db, 'notes', PROBE_WRITE_SLUG);
   try {
-    await setDoc(probeRef, {
-      title: 'probe',
-      tag: '노트',
-      excerpt: 'test',
-      read: '1분',
-      body: [{ type: 'p', text: 'test' }],
-      published: false,
-      date: '2026.01.01',
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    });
+    await withTimeout(
+      setDoc(probeRef, {
+        title: 'probe',
+        tag: '노트',
+        excerpt: 'test',
+        read: '1분',
+        body: [{ type: 'p', text: 'test' }],
+        published: false,
+        date: '2026.01.01',
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      }),
+      FIRESTORE_TIMEOUT_MS,
+      'notes 쓰기',
+    );
     add('notes 쓰기 테스트', true, '통과');
-    await deleteDoc(probeRef);
+    try {
+      await withTimeout(deleteDoc(probeRef), FIRESTORE_TIMEOUT_MS, 'probe 삭제');
+    } catch {
+      /* probe 문서 남아도 admin만 읽을 수 있음 */
+    }
   } catch (err) {
     add('notes 쓰기 테스트', false, err.code || err.message);
   }
@@ -140,9 +159,13 @@ export async function fetchAllNotesAdmin() {
   const db = getFirebaseDb();
   if (!db) return [];
 
-  const q = query(collection(db, 'notes'), orderBy('createdAt', 'desc'));
-  const snap = await getDocs(q);
-  return snap.docs.map(toPublicNote);
+  try {
+    const q = query(collection(db, 'notes'), orderBy('createdAt', 'desc'));
+    const snap = await withTimeout(getDocs(q), FIRESTORE_TIMEOUT_MS, '노트 목록');
+    return snap.docs.map(toPublicNote);
+  } catch {
+    return [];
+  }
 }
 
 export async function fetchNoteBySlug(slug) {
