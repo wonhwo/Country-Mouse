@@ -2,6 +2,7 @@ import '@/styles/globals.scss';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/PageTransition';
+import Providers from '@/components/providers/Providers';
 
 export const metadata = {
   metadataBase: new URL('https://countrymouse.studio'),
@@ -35,11 +36,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div className="cms-root">
-          <Nav />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
-        </div>
+        <Providers>
+          <div className="cms-root">
+            <Nav />
+            <PageTransition>{children}</PageTransition>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

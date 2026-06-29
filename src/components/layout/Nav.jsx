@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import SiteLogo from '@/components/layout/SiteLogo';
+import NavProfile from '@/components/layout/NavProfile';
 
 const ITEMS = [
   { href: '/', label: '홈', match: '/' },
@@ -50,28 +51,31 @@ export default function Nav() {
         <Link href="/" aria-label="Country Mouse Studio 홈">
           <SiteLogo />
         </Link>
-        <div className="nav-links">
-          {ITEMS.map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              className={`nav-link ${isActive(it.match) ? 'active' : ''}`}
-            >
-              {it.label}
-            </Link>
-          ))}
+        <div className="nav-end">
+          <div className="nav-links">
+            {ITEMS.map((it) => (
+              <Link
+                key={it.href}
+                href={it.href}
+                className={`nav-link ${isActive(it.match) ? 'active' : ''}`}
+              >
+                {it.label}
+              </Link>
+            ))}
+          </div>
+          <NavProfile />
+          <button
+            className="nav-mobile-toggle"
+            onClick={() => setMobileOpen(true)}
+            aria-label="메뉴 열기"
+          >
+            <svg width="22" height="14" viewBox="0 0 22 14" fill="none">
+              <line x1="0" y1="2" x2="22" y2="2" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="0" y1="7" x2="22" y2="7" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="0" y1="12" x2="18" y2="12" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </button>
         </div>
-        <button
-          className="nav-mobile-toggle"
-          onClick={() => setMobileOpen(true)}
-          aria-label="메뉴 열기"
-        >
-          <svg width="22" height="14" viewBox="0 0 22 14" fill="none">
-            <line x1="0" y1="2" x2="22" y2="2" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="0" y1="7" x2="22" y2="7" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="0" y1="12" x2="18" y2="12" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </button>
       </nav>
 
       <div className={`mobile-nav ${mobileOpen ? 'open' : ''}`}>
@@ -90,6 +94,12 @@ export default function Nav() {
             {it.label}
           </Link>
         ))}
+        <Link href="/account" className="mobile-nav-link mobile-nav-account">
+          내 계정
+        </Link>
+        <Link href="/admin" className="mobile-nav-link mobile-nav-account">
+          관리
+        </Link>
       </div>
     </>
   );
