@@ -80,3 +80,7 @@ export const FAVORITES = [
     tags: ['시뮬레이션', '도시건설', '힐링'],
   },
 ];
+
+export function getFavorite(num) {
+  return FAVORITES.find((f) => f.num === num);
+}

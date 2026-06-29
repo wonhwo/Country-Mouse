@@ -1,20 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // $(database) 처럼 $ 붙여야 함 — (database) 는 동작 안 함
     function isAdmin() {
       return request.auth != null
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
-    // Firebase 콘솔에서 admins/{본인 Firebase UID} 문서를 수동 생성 (role: "admin")
     match /admins/{uid} {
       allow read: if request.auth != null && request.auth.uid == uid;
       allow write: if false;
     }
 
     match /notes/{slug} {
-      allow read: if isAdmin() || (resource != null && resource.data.published == true);
+      // admin 전체 목록·초안 읽기 / 공개 글 읽기 — allow read 를 나눠야 list 쿼리가 통과함
+      allow read: if isAdmin();
+      allow read: if resource != null && resource.data.published == true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /games/{id} {
+      allow read: if isAdmin();
+      allow read: if resource != null && resource.data.published == true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /playlogs/{id} {
+      allow read: if isAdmin();
+      allow read: if resource != null && resource.data.published == true;
       allow create, update, delete: if isAdmin();
     }
   }

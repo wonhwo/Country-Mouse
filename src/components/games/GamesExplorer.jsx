@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import GameCapsule from '@/components/games/GameCapsule';
-import { GAMES } from '@/data/games';
+import { useGames } from '@/hooks/useGames';
 import { getYoutubeEmbedUrl } from '@/lib/youtube';
 
 const FILTERS = [
@@ -15,14 +15,15 @@ const FILTERS = [
 ];
 
 export default function GamesExplorer() {
+  const { games } = useGames();
   const [filter, setFilter] = useState('all');
-  const filtered = GAMES.filter((g) => (filter === 'all' ? true : g.engineKey === filter));
+  const filtered = games.filter((g) => (filter === 'all' ? true : g.engineKey === filter));
 
   const counts = {
-    all: GAMES.length,
-    unreal: GAMES.filter((g) => g.engineKey === 'unreal').length,
-    unity: GAMES.filter((g) => g.engineKey === 'unity').length,
-    web: GAMES.filter((g) => g.engineKey === 'web').length,
+    all: games.length,
+    unreal: games.filter((g) => g.engineKey === 'unreal').length,
+    unity: games.filter((g) => g.engineKey === 'unity').length,
+    web: games.filter((g) => g.engineKey === 'web').length,
   };
 
   return (

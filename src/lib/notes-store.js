@@ -168,13 +168,8 @@ export async function fetchAllNotesAdmin() {
   const db = getFirebaseDb();
   if (!db) return [];
 
-  try {
-    const q = query(collection(db, 'notes'), orderBy('createdAt', 'desc'));
-    const snap = await withTimeout(getDocs(q), FIRESTORE_TIMEOUT_MS, '노트 목록');
-    return snap.docs.map(toPublicNote);
-  } catch {
-    return [];
-  }
+  const snap = await withTimeout(getDocs(collection(db, 'notes')), FIRESTORE_TIMEOUT_MS, '노트 목록');
+  return snap.docs.map(toPublicNote).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 }
 
 export async function fetchNoteBySlug(slug) {

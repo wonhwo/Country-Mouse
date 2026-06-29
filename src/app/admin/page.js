@@ -23,7 +23,7 @@ const PANELS = [
     title: '게임',
     desc: '제작 게임 목록·상세 정보 편집.',
     href: '/admin/games',
-    ready: false,
+    ready: true,
   },
   {
     id: 'favorites',
@@ -31,7 +31,7 @@ const PANELS = [
     title: '플레이 로그',
     desc: '플레이 로그 항목 추가·수정.',
     href: '/admin/favorites',
-    ready: false,
+    ready: true,
   },
 ];
 
@@ -65,7 +65,7 @@ export default function AdminPage() {
             <Reveal>
               <div className="admin-notice">
                 <span className="admin-notice-dot" />
-                로그인 완료. Firestore에서 노트를 관리할 수 있습니다.
+                로그인 완료. Firestore에서 노트·게임·플레이 로그를 관리할 수 있습니다.
               </div>
             </Reveal>
 
