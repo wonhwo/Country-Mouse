@@ -22,19 +22,11 @@ function Block({ block }) {
 }
 
 export default function NoteArticle({ slug }) {
-  const [note, setNote] = useState(() => getNote(slug) ?? null);
-  const [loading, setLoading] = useState(() => !getNote(slug));
+  const [note, setNote] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const legacy = getNote(slug);
-    if (legacy) {
-      setNote(legacy);
-      setLoading(false);
-      return;
-    }
-
     let active = true;
-    setNote(null);
     setLoading(true);
 
     fetchNoteBySlug(slug)
@@ -43,7 +35,7 @@ export default function NoteArticle({ slug }) {
         setNote(resolveNote(remote, slug, getNote));
       })
       .catch(() => {
-        if (active) setNote(null);
+        if (active) setNote(getNote(slug) ?? null);
       })
       .finally(() => {
         if (active) setLoading(false);

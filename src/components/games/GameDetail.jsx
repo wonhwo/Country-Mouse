@@ -12,18 +12,10 @@ import { fetchGameById } from '@/lib/games-store';
 import { getYoutubeEmbedUrl } from '@/lib/youtube';
 
 export default function GameDetail({ id }) {
-  const legacy = getGame(id);
-  const [game, setGame] = useState(legacy ?? null);
-  const [loading, setLoading] = useState(!legacy);
+  const [game, setGame] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const local = getGame(id);
-    if (local) {
-      setGame(local);
-      setLoading(false);
-      return;
-    }
-
     let active = true;
     setLoading(true);
 
@@ -33,7 +25,7 @@ export default function GameDetail({ id }) {
         setGame(resolveGame(remote, id, getGame));
       })
       .catch(() => {
-        if (active) setGame(null);
+        if (active) setGame(getGame(id) ?? null);
       })
       .finally(() => {
         if (active) setLoading(false);
