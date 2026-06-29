@@ -33,6 +33,9 @@ export default function Footer() {
           <Link className="footer-link" href="/notes">
             노트
           </Link>
+          <Link className="footer-link" href="/guestbook">
+            방명록
+          </Link>
           <Link className="footer-link" href="/tech">
             기술
           </Link>

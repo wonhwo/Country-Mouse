@@ -485,6 +485,86 @@ section { padding: 140px 40px; position: relative; }
   .favorite-icon { flex-basis: 64px; width: 64px; height: 64px; }
 }
 
+/* ============ GUESTBOOK ============ */
+.guestbook-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  padding: 40px;
+  margin-bottom: 56px;
+}
+.guestbook-form-head { margin-bottom: 28px; }
+.guestbook-form-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+.guestbook-form-desc { margin: 0; color: var(--text-secondary); line-height: 1.6; }
+.guestbook-signed-in {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+.guestbook-signed-in strong { color: var(--accent-blue); font-weight: 500; }
+.guestbook-field { display: block; margin-bottom: 20px; }
+.guestbook-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+.guestbook-input,
+.guestbook-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border-hairline);
+  border-radius: 2px;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font: inherit;
+  resize: vertical;
+}
+.guestbook-input:focus,
+.guestbook-textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+.guestbook-list { display: flex; flex-direction: column; gap: 20px; padding-bottom: 80px; }
+.guestbook-entry {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  padding: 28px 32px;
+}
+.guestbook-entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+}
+.guestbook-entry-name { color: var(--accent-blue); font-weight: 500; }
+.guestbook-entry-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border-hairline); }
+.guestbook-entry-message {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+.guestbook-error { color: #c45; margin: 0 0 16px; }
+.guestbook-notice { color: var(--accent-blue-deep); margin: 0 0 16px; }
+
 /* ============ ABOUT PAGE ============ */
 .about-hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: start; padding: 180px 40px 80px; }
 @media (max-width: 968px) { .about-hero { grid-template-columns: 1fr; gap: 40px; padding: 130px 20px 50px; } }

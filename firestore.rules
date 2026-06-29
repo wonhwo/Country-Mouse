@@ -12,22 +12,26 @@ service cloud.firestore {
     }
 
     match /notes/{slug} {
-      // admin 전체 목록·초안 읽기 / 공개 글 읽기 — allow read 를 나눠야 list 쿼리가 통과함
       allow read: if isAdmin();
       allow read: if resource != null && resource.data.published == true;
       allow create, update, delete: if isAdmin();
     }
 
-    match /games/{id} {
+    match /guestbook/{id} {
       allow read: if isAdmin();
-      allow read: if resource != null && resource.data.published == true;
-      allow create, update, delete: if isAdmin();
-    }
-
-    match /playlogs/{id} {
-      allow read: if isAdmin();
-      allow read: if resource != null && resource.data.published == true;
-      allow create, update, delete: if isAdmin();
+      allow read: if resource != null && resource.data.approved == true;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.approved == false
+        && request.resource.data.githubLogin is string
+        && request.resource.data.name is string
+        && request.resource.data.message is string
+        && request.resource.data.githubLogin.size() > 0
+        && request.resource.data.githubLogin.size() <= 39
+        && request.resource.data.name == request.resource.data.githubLogin
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 500;
+      allow update, delete: if isAdmin();
     }
   }
 }

@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Reveal from '@/components/Reveal';
 import FavoriteIcon from '@/components/favorites/FavoriteIcon';
 import { usePlaylogs } from '@/hooks/usePlaylogs';

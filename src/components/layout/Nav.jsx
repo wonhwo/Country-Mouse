@@ -12,6 +12,7 @@ const ITEMS = [
   { href: '/favorites', label: '플레이 로그', match: '/favorites' },
   { href: '/tech', label: '기술', match: '/tech' },
   { href: '/notes', label: '노트', match: '/notes' },
+  { href: '/guestbook', label: '방명록', match: '/guestbook' },
   { href: '/about', label: '소개', match: '/about' },
 ];
 

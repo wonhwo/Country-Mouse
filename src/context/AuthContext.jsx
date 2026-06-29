@@ -14,19 +14,29 @@ import {
   isFirebaseConfigured,
 } from '@/lib/firebase';
 
-const ADMIN_UID_KEY = 'cms_admin_uid';
+const SESSION_KEY = 'cms_github_session';
 
 const AuthContext = createContext(null);
 
-function readStoredAdminUid() {
+function readSession() {
   if (typeof window === 'undefined') return null;
-  return window.localStorage.getItem(ADMIN_UID_KEY);
+  try {
+    const raw = window.localStorage.getItem(SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
 }
 
-function writeStoredAdminUid(uid) {
+function writeSession(session) {
   if (typeof window === 'undefined') return;
-  if (uid) window.localStorage.setItem(ADMIN_UID_KEY, uid);
-  else window.localStorage.removeItem(ADMIN_UID_KEY);
+  if (session) window.localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  else window.localStorage.removeItem(SESSION_KEY);
+}
+
+function githubLoginFromUser(user) {
+  const provider = user.providerData.find((entry) => entry.providerId === 'github.com');
+  return provider?.displayName?.trim().toLowerCase() || null;
 }
 
 export function AuthProvider({ children }) {
@@ -58,18 +68,19 @@ export function AuthProvider({ children }) {
       setUser(nextUser);
       if (!nextUser) {
         setGithubLogin(null);
-        writeStoredAdminUid(null);
+        writeSession(null);
         finish();
         return;
       }
 
-      const storedUid = readStoredAdminUid();
-      if (storedUid === nextUser.uid) {
-        setGithubLogin(adminGithubLogin || null);
-      } else {
-        setGithubLogin(null);
-        writeStoredAdminUid(null);
-      }
+      const session = readSession();
+      const login =
+        session?.uid === nextUser.uid
+          ? session.login
+          : githubLoginFromUser(nextUser) || session?.login || null;
+
+      setGithubLogin(login);
+      if (login) writeSession({ uid: nextUser.uid, login });
       finish();
     });
 
@@ -77,7 +88,7 @@ export function AuthProvider({ children }) {
       clearTimeout(timeoutId);
       unsub();
     };
-  }, [adminGithubLogin]);
+  }, []);
 
   const isAdmin = Boolean(
     user && adminGithubLogin && githubLogin?.toLowerCase() === adminGithubLogin,
@@ -94,33 +105,27 @@ export function AuthProvider({ children }) {
     try {
       const result = await signInWithPopup(auth, getGithubProvider());
       const profile = getAdditionalUserInfo(result)?.profile;
-      const login = profile?.login?.toLowerCase();
+      const login = profile?.login?.toLowerCase() || githubLoginFromUser(result.user);
 
-      if (!adminGithubLogin) {
-        setError('NEXT_PUBLIC_ADMIN_GITHUB_LOGIN 이 설정되지 않았습니다.');
+      if (!login) {
+        setError('GitHub 프로필을 가져오지 못했습니다.');
         await signOut(auth);
         return;
       }
 
-      if (login !== adminGithubLogin) {
-        setError(`허용되지 않은 GitHub 계정입니다. (${profile?.login ?? 'unknown'})`);
-        await signOut(auth);
-        return;
-      }
-
-      writeStoredAdminUid(result.user.uid);
+      writeSession({ uid: result.user.uid, login });
       setGithubLogin(login);
     } catch (err) {
       setError(err?.message || 'GitHub 로그인에 실패했습니다.');
     }
-  }, [adminGithubLogin]);
+  }, []);
 
   const logout = useCallback(async () => {
     setError(null);
     const auth = getFirebaseAuth();
     if (!auth) return;
     await signOut(auth);
-    writeStoredAdminUid(null);
+    writeSession(null);
     setGithubLogin(null);
   }, []);
 

@@ -12,26 +12,16 @@ const PANELS = [
   {
     id: 'notes',
     label: 'notes',
-    title: '노트',
+    title: '작업 노트',
     desc: '작업 노트 작성·수정·발행.',
     href: '/admin/notes',
-    ready: true,
   },
   {
-    id: 'games',
-    label: 'games',
-    title: '게임',
-    desc: '제작 게임 목록·상세 정보 편집.',
-    href: '/admin/games',
-    ready: true,
-  },
-  {
-    id: 'favorites',
-    label: 'playlog',
-    title: '플레이 로그',
-    desc: '플레이 로그 항목 추가·수정.',
-    href: '/admin/favorites',
-    ready: true,
+    id: 'guestbook',
+    label: 'guestbook',
+    title: '방명록',
+    desc: '방명록 승인·삭제.',
+    href: '/admin/guestbook',
   },
 ];
 
@@ -53,7 +43,7 @@ export default function AdminPage() {
           </Reveal>
           <Reveal delay={180}>
             <p className="page-desc">
-              사이트 콘텐츠를 편집합니다. 허용된 GitHub 계정으로 로그인해야 합니다.
+              작업 노트와 방명록을 관리합니다. 허용된 GitHub 계정으로 로그인해야 합니다.
             </p>
           </Reveal>
         </div>
@@ -65,7 +55,7 @@ export default function AdminPage() {
             <Reveal>
               <div className="admin-notice">
                 <span className="admin-notice-dot" />
-                로그인 완료. Firestore에서 노트·게임·플레이 로그를 관리할 수 있습니다.
+                로그인 완료. 게임·플레이 로그는 코드에서 관리하고, 노트·방명록만 Firestore를 사용합니다.
               </div>
             </Reveal>
 
@@ -75,13 +65,9 @@ export default function AdminPage() {
                   <div className="account-card-label">{panel.label}</div>
                   <h2 className="account-card-title">{panel.title}</h2>
                   <p className="account-card-desc">{panel.desc}</p>
-                  {panel.ready ? (
-                    <Link className="btn-primary account-card-action" href={panel.href}>
-                      열기
-                    </Link>
-                  ) : (
-                    <span className="admin-soon">준비 중</span>
-                  )}
+                  <Link className="btn-primary account-card-action" href={panel.href}>
+                    열기
+                  </Link>
                 </article>
               </Reveal>
             ))}

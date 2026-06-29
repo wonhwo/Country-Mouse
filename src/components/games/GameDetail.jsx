@@ -1,48 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Reveal from '@/components/Reveal';
 import GameCapsule from '@/components/games/GameCapsule';
 import GameScreenshot from '@/components/games/GameScreenshot';
 import GameVideo from '@/components/games/GameVideo';
 import { getGame } from '@/data/games';
-import { resolveGame } from '@/lib/game-utils';
-import { fetchGameById } from '@/lib/games-store';
 import { getYoutubeEmbedUrl } from '@/lib/youtube';
 
 export default function GameDetail({ id }) {
-  const [game, setGame] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let active = true;
-    setLoading(true);
-
-    fetchGameById(id)
-      .then((remote) => {
-        if (!active) return;
-        setGame(resolveGame(remote, id, getGame));
-      })
-      .catch(() => {
-        if (active) setGame(getGame(id) ?? null);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, [id]);
-
-  if (loading) {
-    return (
-      <div className="container" style={{ padding: '180px 40px' }}>
-        <p className="page-desc">불러오는 중…</p>
-      </div>
-    );
-  }
+  const game = getGame(id);
 
   if (!game) {
     return (
