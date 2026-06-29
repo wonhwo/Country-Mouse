@@ -3,12 +3,13 @@
 import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-import { NOTES } from '@/data/notes';
+import { useNotes } from '@/hooks/useNotes';
 
 export default function NotesExplorer() {
+  const { notes, loading } = useNotes();
   const [filter, setFilter] = useState('all');
-  const tags = ['all', ...Array.from(new Set(NOTES.map((n) => n.tag)))];
-  const filtered = NOTES.filter((n) => (filter === 'all' ? true : n.tag === filter));
+  const tags = ['all', ...Array.from(new Set(notes.map((n) => n.tag)))];
+  const filtered = notes.filter((n) => (filter === 'all' ? true : n.tag === filter));
 
   return (
     <section style={{ paddingTop: 0 }}>
@@ -22,13 +23,15 @@ export default function NotesExplorer() {
                   onClick={() => setFilter(t)}
                 >
                   {t === 'all' ? '전체' : t}
-                  {t === 'all' && <span className="count">({NOTES.length})</span>}
+                  {t === 'all' && <span className="count">({notes.length})</span>}
                 </button>
                 {i < tags.length - 1 && <div className="filter-divider" />}
               </Fragment>
             ))}
           </div>
         </Reveal>
+
+        {loading && notes.length === 0 && <p className="page-desc">불러오는 중…</p>}
 
         <div className="notes-list">
           {filtered.map((n, i) => (

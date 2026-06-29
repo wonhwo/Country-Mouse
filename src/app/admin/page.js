@@ -13,9 +13,9 @@ const PANELS = [
     id: 'notes',
     label: 'notes',
     title: '노트',
-    desc: '작업 노트 작성·수정·발행. Firestore 연동 후 글쓰기가 열립니다.',
+    desc: '작업 노트 작성·수정·발행.',
     href: '/admin/notes',
-    ready: false,
+    ready: true,
   },
   {
     id: 'games',
@@ -65,7 +65,7 @@ export default function AdminPage() {
             <Reveal>
               <div className="admin-notice">
                 <span className="admin-notice-dot" />
-                로그인 완료. Firestore 연동 후 편집 기능이 열립니다.
+                로그인 완료. Firestore에서 노트를 관리할 수 있습니다.
               </div>
             </Reveal>
 

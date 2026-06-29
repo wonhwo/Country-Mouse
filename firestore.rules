@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // $(database) 처럼 $ 붙여야 함 — (database) 는 동작 안 함
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Firebase 콘솔에서 admins/{본인 Firebase UID} 문서를 수동 생성 (role: "admin")
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /notes/{slug} {
+      allow read: if isAdmin() || (resource != null && resource.data.published == true);
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}

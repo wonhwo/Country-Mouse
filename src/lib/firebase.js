@@ -1,5 +1,6 @@
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth, GithubAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -27,10 +28,19 @@ export function getFirebaseAuth() {
   return app ? getAuth(app) : null;
 }
 
+export function getFirebaseDb() {
+  const app = getFirebaseApp();
+  return app ? getFirestore(app) : null;
+}
+
 export function getGithubProvider() {
   const provider = new GithubAuthProvider();
   provider.addScope('read:user');
   return provider;
+}
+
+export function getFirebaseProjectId() {
+  return process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim() || '';
 }
 
 export function getAdminGithubLogin() {

@@ -1,9 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-import { NOTES } from '@/data/notes';
+import { useNotes } from '@/hooks/useNotes';
 
 export default function FieldNotesHome() {
-  const preview = NOTES.slice(0, 3);
+  const { notes } = useNotes();
+  const preview = notes.slice(0, 3);
+
   return (
     <section>
       <div className="container">
