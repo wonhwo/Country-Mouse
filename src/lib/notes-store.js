@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { NOTES } from '@/data/notes';
 import { withTimeout } from '@/lib/async-utils';
-import { getFirebaseAuth, getFirebaseDb, getFirebaseProjectId } from '@/lib/firebase';
+import { getFirebaseAuth, getFirebaseConfigSummary, getFirebaseDb, getFirebaseProjectId } from '@/lib/firebase';
 import {
   estimateReadMinutes,
   formatNoteDate,
@@ -26,7 +26,7 @@ import {
 const PROBE_READ_SLUG = 'cms-probe-read-missing';
 const PROBE_WRITE_SLUG = 'cms-probe-write-test';
 
-const FIRESTORE_TIMEOUT_MS = 10000;
+const FIRESTORE_TIMEOUT_MS = 25000;
 
 async function ensureAuthSession() {
   const auth = getFirebaseAuth();
@@ -47,6 +47,15 @@ export async function diagnoseFirestoreAccess(uid) {
   const add = (name, ok, detail) => steps.push({ name, ok, detail });
 
   add('프로젝트 ID', Boolean(getFirebaseProjectId()), getFirebaseProjectId() || '없음');
+
+  const config = getFirebaseConfigSummary();
+  add(
+    'authDomain 일치',
+    config.authDomainMatchesProject,
+    config.authDomainMatchesProject
+      ? config.authDomain
+      : `${config.authDomain || '없음'} (기대: ${config.expectedAuthDomain})`,
+  );
 
   const authUid = auth?.currentUser?.uid ?? null;
   add('Firebase 로그인', Boolean(authUid), authUid || '세션 없음');

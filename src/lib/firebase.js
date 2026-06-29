@@ -1,6 +1,6 @@
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth, GithubAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, initializeFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -9,6 +9,8 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+let firestoreDb = null;
+
 export function isFirebaseConfigured() {
   return Boolean(
     firebaseConfig.apiKey &&
@@ -16,6 +18,20 @@ export function isFirebaseConfigured() {
       firebaseConfig.projectId &&
       firebaseConfig.appId,
   );
+}
+
+export function getFirebaseConfigSummary() {
+  const projectId = firebaseConfig.projectId?.trim() || '';
+  const authDomain = firebaseConfig.authDomain?.trim() || '';
+  const expectedAuthDomain = projectId ? `${projectId}.firebaseapp.com` : '';
+
+  return {
+    projectId,
+    authDomain,
+    expectedAuthDomain,
+    envComplete: isFirebaseConfigured(),
+    authDomainMatchesProject: !projectId || authDomain === expectedAuthDomain,
+  };
 }
 
 export function getFirebaseApp() {
@@ -30,7 +46,20 @@ export function getFirebaseAuth() {
 
 export function getFirebaseDb() {
   const app = getFirebaseApp();
-  return app ? getFirestore(app) : null;
+  if (!app) return null;
+
+  if (!firestoreDb) {
+    try {
+      firestoreDb = initializeFirestore(app, {
+        experimentalForceLongPolling: true,
+        experimentalLongPollingOptions: { timeoutSeconds: 30 },
+      });
+    } catch {
+      firestoreDb = getFirestore(app);
+    }
+  }
+
+  return firestoreDb;
 }
 
 export function getGithubProvider() {

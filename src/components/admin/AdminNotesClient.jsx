@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import AdminGate from '@/components/admin/AdminGate';
 import { useAuth } from '@/context/AuthContext';
-import { getFirebaseProjectId } from '@/lib/firebase';
+import { getFirebaseConfigSummary } from '@/lib/firebase';
 import { diagnoseFirestoreAccess, fetchAllNotesAdmin, importLegacyNotes } from '@/lib/notes-store';
 
 export default function AdminNotesClient() {
@@ -84,6 +84,8 @@ export default function AdminNotesClient() {
 
   const firestoreReady = diagnosis?.ready === true;
 
+  const configSummary = getFirebaseConfigSummary();
+
   return (
     <AdminGate>
       <div className="admin-notes-toolbar">
@@ -112,7 +114,7 @@ export default function AdminNotesClient() {
           <p className="account-card-desc">
             전체 상태:{' '}
             {checking
-              ? '확인 중… (최대 10초)'
+              ? '확인 중… (최대 25초)'
               : firestoreReady
                 ? '정상 — 가져오기 가능'
                 : diagnosis
@@ -141,17 +143,17 @@ export default function AdminNotesClient() {
 
           {!firestoreReady && !checking && (
             <ol className="account-card-desc" style={{ marginTop: 16, paddingLeft: 20 }}>
-              <li>콘솔 프로젝트 ID가 <code>{getFirebaseProjectId()}</code> 와 같은지 확인</li>
               <li>
-                <code>admins/{user.uid}</code> 문서 (자동 ID 아님, 필드 <code>role=admin</code>)
+                Vercel env가 <strong>Production</strong>에 모두 있는지 확인 후 Redeploy
               </li>
               <li>
-                규칙 10줄:{' '}
-                <code>
-                  allow read: if isAdmin() || (resource != null && resource.data.published == true);
-                </code>
+                <code>NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN</code> ={' '}
+                <code>{configSummary.expectedAuthDomain || '프로젝트ID.firebaseapp.com'}</code>
               </li>
-              <li>규칙 수정 후 <strong>게시</strong> → 로그아웃 후 재로그인 → 「권한 다시 확인」</li>
+              <li>Firebase → Authentication → Authorized domains에 배포 도메인 추가</li>
+              <li>Firebase → App Check → Firestore 강제 적용이 켜져 있으면 끄기(또는 앱 연동)</li>
+              <li>브라우저 개발자도구 → Network → <code>firestore.googleapis.com</code> 요청 상태 확인</li>
+              <li>규칙 게시 후 로그아웃 → 재로그인 → 「권한 다시 확인」</li>
             </ol>
           )}
         </div>
